@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+	</title>
+
+	<script type="text/javascript" src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="https://d3js.org/d3-path.v0.1.min.js"></script>
+	<script type="text/javascript" src="https://d3js.org/d3-shape.v0.6.min.js"></script>
+	<script src = "http://axc.net/code_libraries/lasso/lasso.min.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+    <!-- Range slider code -->
+    <script src="https://cdn.rawgit.com/RasmusFonseca/d3RangeSlider/master/d3RangeSlider.js"></script>
+    <!-- Range slider style -->
+    <link href="https://cdn.rawgit.com/RasmusFonseca/d3RangeSlider/master/d3RangeSlider.css" rel="stylesheet">
+
+	{% load static %}
+  	<script  src="{%  static 'js/plottools/plots/VizScatterPlot.js' %}"></script>
+  	{% load static %}
+  	<script  src="{%  static 'js/plottools/plots/VizMetric.js' %}"></script>
+	{% load static %}
+	<script src="{%  static 'js/plottools/plots/VizCoocurrenceMatrix.js' %}"></script>
+	{% load static %}
+	<script src="{%  static 'js/plottools/plots/VizContainer.js' %}" ></script>
+
+	{% load static %}
+	<script src="{%  static 'js/plottools/plots/VizContainerMain.js' %}" ></script>
+
+	{% load static %}
+	<script src="{%  static 'js/plottools/plots/VizOptions.js' %}" ></script>
+
+
+	{% load static %}
+	<script type="text/javascript" src="{%  static 'js/main.js' %}"></script>
+
+
+
+	{% load static%}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+
+
+</head>
+<body>
+
+	<div id="leftPanelDiv" class="split left"></div>
+
+	<div id="rightPanelDiv" class="split right"></div>
+
+
+
+
+	<script>
+		begin();
+		var model = [ ];
+		var model2 = [  ];
+
+
+		var container1 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'kmean_model' , 'Table':'kmeansTable', 'ensamble':0} );
+		drawLeftPanelContainer( container1 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
+
+		var container2 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'birch_model', 'Table':'birchTable', 'ensamble':0 } );
+		drawLeftPanelContainer( container2 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
+
+		var container3 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'som_model', 'Table':'somTable', 'ensamble':0 } );
+		drawLeftPanelContainer( container3 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
+
+
+
+		APPLICATION_DATA['modelContainers'].push(container1);
+		APPLICATION_DATA['modelContainers'].push(container2);
+		APPLICATION_DATA['modelContainers'].push(container3);
+
+		var containerMain = createModel( { 'divParentId' : "rightPanelDiv", 'modelType' : 'ensamble_model', 'ensamble':1 } );
+		drawRightPanelContainer( containerMain ,  { 'dataScatter' : model , 'dataMatrix':model2 , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
+
+		//APPLICATION_DATA['modelContainers'][0].getCurrentLabels();
+
+
+	</script>
+
+	 <div id="slider-container"></div>
+
+
+	<div id="slider-container"></div>
+	<div id="range-label">0 - 10</div>
+
+	<script type="text/javascript"></script>
+
+
+	<link href="d3RangeSlider.css" rel="stylesheet">
+
+</body>
+</html>

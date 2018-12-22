@@ -1,0 +1,6 @@
+[submodule "django_app/static/js/plottools"]
+	path = django_app/static/js/plottools
+	url = https://github.com/jose2008/ensemble_viz_plotting
+[submodule "django_app/clustering_viz/clustering"]
+	path = django_app/clustering_viz/clustering
+	url = https://github.com/jose2008/ensemble_clustering_models.git
