@@ -5,10 +5,8 @@ var APPLICATION_DATA = {};
 function createModel( params )
 {
 	//var _container = new VizContainer( params['containerDiv'] );
-
 	var _divParentId = params['divParentId'];
 	var _divParent = document.getElementById( _divParentId );
-	
 	var _divContainer = document.createElement( 'div' );
 	_divParent.appendChild( _divContainer );
 
@@ -66,12 +64,31 @@ function draw()
 
 function begin()
 {
+
+
+	
+
+
+
+
+
 	// initialize everything here
 	// procedural
 	APPLICATION_DATA['leftPanelDiv'] 	= document.getElementById( 'leftPanelDiv' );
 	APPLICATION_DATA['rightPanelDiv'] 	= document.getElementById( 'rightPanelDiv' );
 	APPLICATION_DATA['numModels'] 		= 0;
 	APPLICATION_DATA['modelContainers'] = [];
+	APPLICATION_DATA['metrics'] = [];
+	APPLICATION_DATA['points'] = [];
+	APPLICATION_DATA['metric'] ;
+	APPLICATION_DATA['vertex'] = [];
+	
+
+
+
+
+
+
 	// oop
 	//APPLICATION_MODEL_PANEL = new ApplicationModelsPanel();
 };

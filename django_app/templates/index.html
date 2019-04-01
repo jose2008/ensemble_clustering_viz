@@ -8,9 +8,8 @@
 	<script type="text/javascript" src="https://d3js.org/d3-path.v0.1.min.js"></script>
 	<script type="text/javascript" src="https://d3js.org/d3-shape.v0.6.min.js"></script>
 	<script src = "http://axc.net/code_libraries/lasso/lasso.min.js"></script>
-
 	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-
+	
     <!-- Range slider code -->
     <script src="https://cdn.rawgit.com/RasmusFonseca/d3RangeSlider/master/d3RangeSlider.js"></script>
     <!-- Range slider style -->
@@ -24,6 +23,11 @@
 	<script src="{%  static 'js/plottools/plots/VizCoocurrenceMatrix.js' %}"></script>
 	{% load static %}
 	<script src="{%  static 'js/plottools/plots/VizContainer.js' %}" ></script>
+	{% load static %}
+	<script src="{%  static 'js/plottools/plots/VizComboBox.js' %}" ></script>
+
+	{% load static %}
+	<script src="{%  static 'js/plottools/plots/VizStreamGraph.js' %}" ></script>
 
 	{% load static %}
 	<script src="{%  static 'js/plottools/plots/VizContainerMain.js' %}" ></script>
@@ -31,32 +35,135 @@
 	{% load static %}
 	<script src="{%  static 'js/plottools/plots/VizOptions.js' %}" ></script>
 
+	{% load static %}
+	<script src="{%  static 'js/plottools/plots/VizPolygon.js' %}" ></script>
+
+	{% load static %}
+	<script src="{%  static 'js/plottools/plots/VizBar.js' %}" ></script>
+
+	{% load static %}
+	<script src="{%  static 'js/plottools/plots/VizBarChart.js' %}" ></script>
+
+	
+
+
+
 
 	{% load static %}
 	<script type="text/javascript" src="{%  static 'js/main.js' %}"></script>
 
+	{% load static %}
+	<script type="text/javascript" src="{%  static 'js/tools.js' %}"></script>
 
 
 	{% load static%}
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
 
+	{% load static%}
+	<link href=" {% static '/bootstrap/css/bootstrap.css'%}" rel="stylesheet">
+
+	{% load static%}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/principal.css'%}">
+
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
 
 </head>
 <body>
 
-	<div id="leftPanelDiv" class="split left"></div>
+	<div id="leftPanelDiv2" class="split left ">
+	
+		<div style="width: 600px;padding:0px 0px 0px 20px" class=" row">
+			<select id="selectBox" name="Algorithm" onchange="onAddModel();">
+			   <option value="0">Algorithm</option>
+			   <option value="1">KMeans</option>
+			   <option value="2">Birch</option>
+			   <option value="3">SOM</option>
+			   <option value="4">DBScan</option>
+			   <option value="5">Agglomerative</option>
+			   <option value="6">kmeansTable Clasic</option>
+			   <option value="7">KMeans MiniBatch</option>
+			   <option value="8">KMedoids</option>
+			</select>
+		</div>
 
-	<div id="rightPanelDiv" class="split right"></div>
+		<div id="leftPanelDiv" class="">
+		</div>
+
+
+
+	</div>
+
+
+
+
+
+	<div id="rightPanelDiv" class="split right"> 
+
+
+<!--
+		<div class="barWrapper">
+		<h1>example bar</h1>
+		<div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" >   
+        <span  class="popOver" data-toggle="tooltip" data-placement="top" title="85%"> </span>     
+</div>
+	</div>
+
+	</div>
+-->
+
+
+
+
+	</div>
+
+
+
+	
 
 
 
 
 	<script>
 		begin();
+
+
+
+	/*
+
+	select = document.createElement( 'select' );
+	select.id = "idSelect2";
+	select.onchange = onAddModel;
+	optionName = document.createElement( 'option' );
+	optionName.text = "Ensemble";
+
+
+	option1 = document.createElement( 'option' );
+	option1.id = "unoId";
+	option1.text = "Voting";
+
+	option2 = document.createElement( 'option' );
+	option2.id = "dosId";
+	option2.text = "CSPA";
+
+
+	select.appendChild(optionName);
+	select.appendChild(option1);
+	select.appendChild(option2);
+
+
+	document.getElementById( 'leftPanelDiv' ).appendChild( select );
+
+	*/
+
+
 		var model = [ ];
 		var model2 = [  ];
 
-
+/*
 		var container1 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'kmean_model' , 'Table':'kmeansTable', 'ensamble':0} );
 		drawLeftPanelContainer( container1 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
 
@@ -66,14 +173,23 @@
 		var container3 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'som_model', 'Table':'somTable', 'ensamble':0 } );
 		drawLeftPanelContainer( container3 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
 
+		var container4 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'dbscan_model', 'Table':'dbscanTable', 'ensamble':0 } );
+		drawLeftPanelContainer( container4 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
 
 
-		APPLICATION_DATA['modelContainers'].push(container1);
+		var container5 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'agglomerative_model', 'Table':'agglomerativeTable', 'ensamble':0 } );
+		drawLeftPanelContainer( container5 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
+
+
+
+
+		//APPLICATION_DATA['modelContainers'].push(container1);
 		APPLICATION_DATA['modelContainers'].push(container2);
-		APPLICATION_DATA['modelContainers'].push(container3);
+		//APPLICATION_DATA['modelContainers'].push(container3);
 
+*/
 		var containerMain = createModel( { 'divParentId' : "rightPanelDiv", 'modelType' : 'ensamble_model', 'ensamble':1 } );
-		drawRightPanelContainer( containerMain ,  { 'dataScatter' : model , 'dataMatrix':model2 , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
+		drawRightPanelContainer( containerMain ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
 
 		//APPLICATION_DATA['modelContainers'][0].getCurrentLabels();
 
