@@ -145,3 +145,27 @@ button {
 
 
 
+
+/* Create three equal columns that floats next to each other */
+.column3_polygon {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row3_polygon:after {
+  content: "";
+  display: table;
+  background-color: #dedede;
+  clear: both;
+}
+
+
+.column-poligon-result {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}

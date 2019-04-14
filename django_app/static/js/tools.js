@@ -64,24 +64,35 @@ function onAddModel( )
 
 
 	var numberOfSides = APPLICATION_DATA['modelContainers'].length,
-    size = 100,
-    Xcenter = 200,
-    Ycenter = 120;
+    size = 70,
+
+    Xcenter = (document.getElementById('tcanvas').clientWidth)/4;
+   	Ycenter = (document.getElementById('tcanvas').clientHeight)/2;
+
+   	Xcenter2 = (document.getElementById('tcanvas2').clientWidth)/4;
+   	Ycenter2 = (document.getElementById('tcanvas2').clientHeight)/2;
+
+	Xcenter3 = (document.getElementById('tcanvas3').clientWidth)/4;
+   	Ycenter3 = (document.getElementById('tcanvas3').clientHeight)/2;
 
     var canvas = document.querySelector("#myCanvas");
 	var cxt = canvas.getContext("2d");
-
 	cxt.canvas.width  = window.innerWidth;
   	cxt.canvas.height = window.innerHeight;
-  	console.log("width.........................2");
-  	console.log(window.innerWidth);
-    //canvas = document.createElement( "CANVAS" );
-    //cxt = canvas.getContext( "2d" );
-
-    //cxt.canvas.width  = window.innerWidth;
-  	//cxt.canvas.height = window.innerHeight;
-
   	cxt.clearRect( 0, 0, canvas.width, canvas.height );
+
+	var canvas2 = document.querySelector("#myCanvas2");
+	var cxt2 = canvas2.getContext("2d");
+	cxt2.canvas.width  = window.innerWidth;
+	cxt2.canvas.height = window.innerHeight;
+	cxt2.clearRect( 0, 0, canvas2.width, canvas2.height );
+
+	var canvas3 = document.querySelector("#myCanvas3");
+	var cxt3 = canvas3.getContext("2d");
+	cxt3.canvas.width  = window.innerWidth;
+	cxt3.canvas.height = window.innerHeight;
+	cxt3.clearRect( 0, 0, canvas3.width, canvas3.height );
+
 
 
 	cxt.beginPath();
@@ -99,36 +110,195 @@ function onAddModel( )
 		cxt.fill();	
 	}
 
-
 	for (var i = 1; i <= numberOfSides;i += 1) {
 	    cxt.lineTo (Xcenter + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides));
 	    cxt.font = "12px Georgia";
 		cxt.fillStyle = 'blue'
 	    cxt.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
 	    	,Xcenter + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
-		//APPLICATION_DATA['vertex'].push( [ Xcenter + size * Math.cos(i * 2 * Math.PI / numberOfSides) , Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides) ]   );
 	}
-
-	
-
 	cxt.strokeStyle = "#000000";
 	cxt.lineWidth = 1;
 	cxt.stroke();
-
-
 	if(numberOfSides >2){
 		cxt.beginPath();
 		cxt.arc(Xcenter, Ycenter, 5, 0,Math.PI*2);
 		cxt.fill();	
 	}
 
-	//cxt.stroke();
+
+
+	//another polygon
+	cxt2.beginPath();
+	cxt2.moveTo (Xcenter2 +  size * Math.cos(0), Ycenter2 +  size *  Math.sin(0));          
+
+	if(numberOfSides == 1){
+		cxt2.arc(Xcenter2 + size * Math.cos(1 * 2 * Math.PI / numberOfSides), Ycenter2 + size * Math.sin(1 * 2 * Math.PI / numberOfSides), 5, 0,Math.PI*2);
+		cxt2.fill();
+	}
+
+	if(numberOfSides ==2){
+		x_med2 = ( Xcenter2 + size * Math.cos(1 * 2 * Math.PI / numberOfSides) + Xcenter2 + size * Math.cos(2 * 2 * Math.PI / numberOfSides)  )/2
+		y_med2 = ( Ycenter2 + size * Math.sin(1 * 2 * Math.PI / numberOfSides) + Ycenter2 + size * Math.sin(2 * 2 * Math.PI / numberOfSides) )/2
+		cxt2.arc(x_med2, y_med2, 5, 0,Math.PI*2);
+		cxt2.fill();	
+	}
+
+	for (var i = 1; i <= numberOfSides;i += 1) {
+	    cxt2.lineTo (Xcenter + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides));
+	    cxt2.font = "12px Georgia";
+		cxt2.fillStyle = 'blue'
+	    cxt2.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter2 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	}
+	cxt2.strokeStyle = "#000000";
+	cxt2.lineWidth = 1;
+	cxt2.stroke();
+	if(numberOfSides >2){
+		cxt2.beginPath();
+		cxt2.arc(Xcenter2, Ycenter2, 5, 0,Math.PI*2);
+		cxt2.fill();	
+	}
+
+
+	//another polygon 3
+	cxt3.beginPath();
+	cxt3.moveTo (Xcenter3 +  size * Math.cos(0), Ycenter3 +  size *  Math.sin(0));          
+
+	if(numberOfSides == 1){
+		cxt3.arc(Xcenter3 + size * Math.cos(1 * 2 * Math.PI / numberOfSides), Ycenter3 + size * Math.sin(1 * 2 * Math.PI / numberOfSides), 5, 0,Math.PI*2);
+		cxt3.fill();
+	}
+
+	if(numberOfSides ==2){
+		x_med3 = ( Xcenter3 + size * Math.cos(1 * 2 * Math.PI / numberOfSides) + Xcenter3 + size * Math.cos(2 * 2 * Math.PI / numberOfSides)  )/2
+		y_med3 = ( Ycenter3 + size * Math.sin(1 * 2 * Math.PI / numberOfSides) + Ycenter3 + size * Math.sin(2 * 2 * Math.PI / numberOfSides) )/2
+		cxt3.arc(x_med3, y_med3, 5, 0,Math.PI*2);
+		cxt3.fill();	
+	}
+
+	for (var i = 1; i <= numberOfSides;i += 1) {
+	    cxt3.lineTo (Xcenter3 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter3 + size * Math.sin(i * 2 * Math.PI / numberOfSides));
+	    cxt3.font = "12px Georgia";
+		cxt3.fillStyle = 'blue'
+	    cxt3.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter3 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	}
+	cxt3.strokeStyle = "#000000";
+	cxt3.lineWidth = 1;
+	cxt3.stroke();
+	if(numberOfSides >2){
+		cxt3.beginPath();
+		cxt3.arc(Xcenter3, Ycenter3, 5, 0,Math.PI*2);
+		cxt3.fill();	
+	}
+
+
 
 	document.getElementById('selectBox').value = 0;
-
-	//APPLICATION_DATA['modelContainers'].push(container1);
-// ....d. .ds.ad.as 
 }
 
 
 
+
+//function to draw......
+
+function inside(point, vs) {
+    var x = point[0], y = point[1];
+    var inside = false;
+    for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+        var xi = vs[i][0], yi = vs[i][1];
+        var xj = vs[j][0], yj = vs[j][1];
+
+        var intersect = ((yi > y) != (yj > y))
+            && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+        if (intersect) inside = !inside;
+    }
+    return inside;
+};
+
+function isOnLine(x, y, endx, endy, px, py) {
+    var f = function(somex) { return (endy - y) / (endx - x) * (somex - x) + y; };
+    return Math.abs(f(px) - py) < 200 // tolerance, rounding errors
+        && px >= x && px <= endx;      // are they also on this segment?
+}
+
+
+function triangle_area(x1, y1, x2, y2, x3, y3){
+    return Math.abs(0.5*(x1*(y2-y3)+x2*(y3-y1)+x3*(y1-y2)))
+}
+
+
+function gaussian(std, x){
+	return    (1/(std*std*Math.PI))*Math.pow(Math.E, -Math.pow(x,2)/(std*std)  );
+
+};
+
+
+function distance(l1,l2){
+	return Math.sqrt(  (l1[0]-l2[0])*(l1[0]-l2[0])  +   (l1[1]-l2[1])*(l1[1]-l2[1])  )/10;
+}
+
+function float2color( percentage ) {
+    var color_part_dec = 255 * percentage;
+    var color_part_hex = Number(parseInt( color_part_dec , 10)).toString(16);
+    return "#" + color_part_hex + color_part_hex + color_part_hex;
+}
+
+
+
+
+
+ getGradientColorGreen = function(start_color, end_color, percent) {
+   // strip the leading # if it's there
+   start_color = start_color.replace(/^\s*#|\s*$/g, '');
+   end_color = end_color.replace(/^\s*#|\s*$/g, '');
+
+   // convert 3 char codes --> 6, e.g. `E0F` --> `EE00FF`
+   if(start_color.length == 3){
+     start_color = start_color.replace(/(.)/g, '$1$1');
+   }
+
+   if(end_color.length == 3){
+     end_color = end_color.replace(/(.)/g, '$1$1');
+   }
+
+   // get colors
+   var start_red = parseInt(start_color.substr(0, 2), 16),
+       start_green = parseInt(start_color.substr(2, 2), 16),
+       start_blue = parseInt(start_color.substr(4, 2), 16);
+
+   var end_red = parseInt(end_color.substr(0, 2), 16),
+       end_green = parseInt(end_color.substr(2, 2), 16),
+       end_blue = parseInt(end_color.substr(4, 2), 16);
+
+   // calculate new color
+   var diff_red = end_red - start_red;
+   var diff_green = end_green - start_green;
+   var diff_blue = end_blue - start_blue;
+
+   diff_red = ( (diff_red * percent) + start_red ).toString(16).split('.')[0];
+   diff_green = ( (diff_green * percent) + start_green ).toString(16).split('.')[0];
+   diff_blue = ( (diff_blue * percent) + start_blue ).toString(16).split('.')[0];
+
+   // ensure 2 digits by color
+   if( diff_red.length == 1 ) diff_red = '0' + diff_red
+   if( diff_green.length == 1 ) diff_green = '0' + diff_green
+   if( diff_blue.length == 1 ) diff_blue = '0' + diff_blue
+
+   return '#' + diff_red + diff_green + diff_blue;
+ };
+
+function arrayMin(arr) {
+  //if(arr) return;
+  return arr.reduce(function (p, v) {
+  return ( p < v ? p : v );
+  });
+}
+
+function arrayMax(arr) {
+  //if(arr) return ;
+  return arr.reduce(function (p, v) {
+  return ( p > v ? p : v );
+  });
+}
