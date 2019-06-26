@@ -8,14 +8,18 @@
 	<script type="text/javascript" src="https://d3js.org/d3-path.v0.1.min.js"></script>
 	<script type="text/javascript" src="https://d3js.org/d3-shape.v0.6.min.js"></script>
 	<script src="https://d3js.org/d3-array.v2.min.js"></script>
-<script src="https://d3js.org/d3-color.v1.min.js"></script>
-<script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
-<script src="https://d3js.org/d3-time.v1.min.js"></script>
-<script src="https://d3js.org/d3-time-format.v2.min.js"></script>
-<script src="https://d3js.org/d3-scale.v3.min.js"></script>
+	<script src="https://d3js.org/d3-color.v1.min.js"></script>
+	<script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+	<script src="https://d3js.org/d3-time.v1.min.js"></script>
+	<script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+	<script src="https://d3js.org/d3-scale.v3.min.js"></script>
 	<script src = "http://axc.net/code_libraries/lasso/lasso.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-	
+	<script src="~/scripts/jquery-1.10.2.js"></script>
+
+<!-- #region datatables files -->
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <!-- Range slider code -->
     <script src="https://cdn.rawgit.com/RasmusFonseca/d3RangeSlider/master/d3RangeSlider.js"></script>
     <!-- Range slider style -->
@@ -24,6 +28,8 @@
 	{% load static %}
   	<script  src="{%  static 'js/plottools/plots/VizScatterPlot.js' %}"></script>
   	{% load static %}
+  	<script  src="{%  static 'js/plottools/plots/VizComparationMethods.js' %}"></script>
+  	{% load static %}
   	<script  src="{%  static 'js/plottools/plots/VizMetric.js' %}"></script>
 	{% load static %}
 	<script src="{%  static 'js/plottools/plots/VizCoocurrenceMatrix.js' %}"></script>
@@ -31,6 +37,9 @@
 	<script src="{%  static 'js/plottools/plots/VizContainer.js' %}" ></script>
 	{% load static %}
 	<script src="{%  static 'js/plottools/plots/VizComboBox.js' %}" ></script>
+
+	{% load static %}
+	<script src="{%  static 'js/plottools/plots/VizModal.js' %}" ></script>
 
 	{% load static %}
 	<script src="{%  static 'js/plottools/plots/VizStreamGraph.js' %}" ></script>
@@ -42,20 +51,22 @@
 	<script src="{%  static 'js/plottools/plots/VizOptions.js' %}" ></script>
 
 	{% load static %}
+	<script src="{%  static 'js/plottools/plots/VizSaveModel.js' %}" ></script>
+
+	{% load static %}
+	<script src="{%  static 'js/plottools/plots/VizHistorialTable.js' %}" ></script>
+
+	{% load static %}
 	<script src="{%  static 'js/plottools/plots/VizPolygon.js' %}" ></script>
 
 	{% load static %}
-	<script src="{%  static 'js/plottools/plots/VizPolygon2.js' %}" ></script>
+	<script src="{%  static 'js/plottools/plots/VizStarChart.js' %}" ></script>
 
 	{% load static %}
 	<script src="{%  static 'js/plottools/plots/VizBar.js' %}" ></script>
 
 	{% load static %}
 	<script src="{%  static 'js/plottools/plots/VizBarChart.js' %}" ></script>
-
-	
-
-
 
 
 	{% load static %}
@@ -65,8 +76,14 @@
 	<script type="text/javascript" src="{%  static 'js/tools.js' %}"></script>
 
 
+
+
 	{% load static%}
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+
+	{% load static%}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/select_style.css'%}">
+
 
 	{% load static%}
 	<link href=" {% static '/bootstrap/css/bootstrap.css'%}" rel="stylesheet">
@@ -77,15 +94,27 @@
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
 
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
 
 
 </head>
 <body>
+<!--
+<input type="button" value="Click me" id="idModalButton">
+<input type="button" value="Click me" id="idModalButton2">
+-->
 
-	<div id="leftPanelDiv2" class="split left ">
-	
+<div class="header">
+  <p style="margin-bottom: 0px">Interactive generation of clustering ensembles for data analysis</p>
+</div>
+
+
+	<div id="leftPanelDiv2" class=" split left ">
 		<div style="width: 600px;padding:0px 0px 0px 20px" class=" row">
-			<select id="selectBox" name="Algorithm" onchange="onAddModel();">
+			<span class="custom-dropdown ">
+			<select class="" id="selectBox" name="Algorithm"   onchange="onAddModel();">
 			   <option value="0">Algorithm</option>
 			   <option value="1">KMeans</option>
 			   <option value="2">Birch</option>
@@ -95,40 +124,59 @@
 			   <option value="6">kmeansTable Clasic</option>
 			   <option value="7">KMeans MiniBatch</option>
 			   <option value="8">KMedoids</option>
+			   <option value="9">Spectral</option>
+			   <option value="10">GMM</option>
 			</select>
+			</span>
+			<input type="checkbox" id="cbox1" value="first_checkbox"> <label for="cbox1"> Collapse All</label><br>
 		</div>
-
+		
 		<div id="leftPanelDiv" class="">
 		</div>
+	</div>
 
 
 
+
+		<!-- basic modal -->
+	<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title" id="myModalLabel">Comparison of Models</h4>
+	        <button id="IDbuttonModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body" id ="bodyIDModal">
+	       <!-- <h3>Modal Body</h3> -->
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+	      </div>
+	    </div>
+	  </div>
 	</div>
 
 
 
 
 
-	<div id="rightPanelDiv" class="split right"> 
+	<div id="rightPanelDiv" class="split right "> 
+		<div id="loading"></div>
+		<!--
+				<div class="barWrapper">
+				<h1>example bar</h1>
+				<div class="progress">
+		  <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" >   
+		        <span  class="popOver" data-toggle="tooltip" data-placement="top" title="85%"> </span>     
+		</div>
+			</div>
 
-
-<!--
-		<div class="barWrapper">
-		<h1>example bar</h1>
-		<div class="progress">
-  <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" >   
-        <span  class="popOver" data-toggle="tooltip" data-placement="top" title="85%"> </span>     
-</div>
+			</div>
+		-->
 	</div>
-
-	</div>
--->
-
-
-
-
-	</div>
-
 
 
 	
@@ -138,71 +186,50 @@
 
 	<script>
 		begin();
+		/*
+
+		select = document.createElement( 'select' );
+		select.id = "idSelect2";
+		select.onchange = onAddModel;
+		optionName = document.createElement( 'option' );
+		optionName.text = "Ensemble";
 
 
+		option1 = document.createElement( 'option' );
+		option1.id = "unoId";
+		option1.text = "Voting";
 
-	/*
-
-	select = document.createElement( 'select' );
-	select.id = "idSelect2";
-	select.onchange = onAddModel;
-	optionName = document.createElement( 'option' );
-	optionName.text = "Ensemble";
-
-
-	option1 = document.createElement( 'option' );
-	option1.id = "unoId";
-	option1.text = "Voting";
-
-	option2 = document.createElement( 'option' );
-	option2.id = "dosId";
-	option2.text = "CSPA";
+		option2 = document.createElement( 'option' );
+		option2.id = "dosId";
+		option2.text = "CSPA";
 
 
-	select.appendChild(optionName);
-	select.appendChild(option1);
-	select.appendChild(option2);
+		select.appendChild(optionName);
+		select.appendChild(option1);
+		select.appendChild(option2);
 
 
-	document.getElementById( 'leftPanelDiv' ).appendChild( select );
+		document.getElementById( 'leftPanelDiv' ).appendChild( select );
 
-	*/
-
-
+		*/
 		var model = [ ];
 		var model2 = [  ];
 
-/*
-		var container1 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'kmean_model' , 'Table':'kmeansTable', 'ensamble':0} );
-		drawLeftPanelContainer( container1 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
+		/*
+				var container1 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'kmean_model' , 'Table':'kmeansTable', 'ensamble':0} );
+				drawLeftPanelContainer( container1 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
 
-		var container2 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'birch_model', 'Table':'birchTable', 'ensamble':0 } );
-		drawLeftPanelContainer( container2 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
+				var container2 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'birch_model', 'Table':'birchTable', 'ensamble':0 } );
+				drawLeftPanelContainer( container2 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
 
-		var container3 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'som_model', 'Table':'somTable', 'ensamble':0 } );
-		drawLeftPanelContainer( container3 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
+				//APPLICATION_DATA['modelContainers'].push(container1);
+				APPLICATION_DATA['modelContainers'].push(container2);
+				//APPLICATION_DATA['modelContainers'].push(container3);
 
-		var container4 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'dbscan_model', 'Table':'dbscanTable', 'ensamble':0 } );
-		drawLeftPanelContainer( container4 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
-
-
-		var container5 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'agglomerative_model', 'Table':'agglomerativeTable', 'ensamble':0 } );
-		drawLeftPanelContainer( container5 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
-
-
-
-
-		//APPLICATION_DATA['modelContainers'].push(container1);
-		APPLICATION_DATA['modelContainers'].push(container2);
-		//APPLICATION_DATA['modelContainers'].push(container3);
-
-*/
+		*/
 		var containerMain = createModel( { 'divParentId' : "rightPanelDiv", 'modelType' : 'ensamble_model', 'ensamble':1 } );
 		drawRightPanelContainer( containerMain ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
-
 		//APPLICATION_DATA['modelContainers'][0].getCurrentLabels();
-
-
 	</script>
 
 	 <div id="slider-container"></div>
@@ -215,6 +242,8 @@
 
 
 	<link href="d3RangeSlider.css" rel="stylesheet">
+
+
 
 </body>
 </html>

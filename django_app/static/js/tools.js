@@ -2,16 +2,13 @@
 
 function onAddModel( )
 {
-
-
 	var comboboxValue = document.getElementById('selectBox').value;
 	//begin();
-	console.log("new model......");
-	console.log(comboboxValue);
 	if(comboboxValue == 1){
 		var container1 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'kmean_model' + APPLICATION_DATA['modelContainers'].length , 'Table':'kmeansTable' + APPLICATION_DATA['modelContainers'].length, 'ensamble':0} );
 		drawLeftPanelContainer( container1 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
 		APPLICATION_DATA['modelContainers'].push(container1);
+		APPLICATION_DATA_copy['modelContainers'].push(container1);
 	}
 
 
@@ -19,6 +16,7 @@ function onAddModel( )
 		var container2 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'birch_model'+ APPLICATION_DATA['modelContainers'].length, 'Table':'birchTable'+ APPLICATION_DATA['modelContainers'].length, 'ensamble':0 } );
 		drawLeftPanelContainer( container2 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
 		APPLICATION_DATA['modelContainers'].push(container2);
+		APPLICATION_DATA_copy['modelContainers'].push(container2);
 	}
 
 
@@ -26,6 +24,7 @@ function onAddModel( )
 		var container3 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'som_model'+ APPLICATION_DATA['modelContainers'].length, 'Table':'somTable'+ APPLICATION_DATA['modelContainers'].length, 'ensamble':0 } );
 		drawLeftPanelContainer( container3 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
 		APPLICATION_DATA['modelContainers'].push(container3);
+		APPLICATION_DATA_copy['modelContainers'].push(container3);
 	}
 
 
@@ -33,6 +32,7 @@ function onAddModel( )
 		var container4 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'dbscan_model'+ APPLICATION_DATA['modelContainers'].length, 'Table':'dbscanTable'+ APPLICATION_DATA['modelContainers'].length, 'ensamble':0 } );
 		drawLeftPanelContainer( container4 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
 		APPLICATION_DATA['modelContainers'].push(container4);
+		APPLICATION_DATA_copy['modelContainers'].push(container4);
 	}
 
 
@@ -40,31 +40,49 @@ function onAddModel( )
 		var container5 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'agglomerative_model'+ APPLICATION_DATA['modelContainers'].length, 'Table':'agglomerativeTable'+ APPLICATION_DATA['modelContainers'].length, 'ensamble':0 } );
 		drawLeftPanelContainer( container5 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
 		APPLICATION_DATA['modelContainers'].push(container5);
+		APPLICATION_DATA_copy['modelContainers'].push(container5);
 	}
 
 	if(comboboxValue == 6){
 		var container6 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'kmean_model_clasic'+ APPLICATION_DATA['modelContainers'].length, 'Table':'kmean_model_clasicTable'+ APPLICATION_DATA['modelContainers'].length, 'ensamble':0 } );
 		drawLeftPanelContainer( container6 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
 		APPLICATION_DATA['modelContainers'].push(container6);
+		APPLICATION_DATA_copy['modelContainers'].push(container6);
 	}
 
 	if(comboboxValue == 7){
 		var container7 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'MiniBatchKMeans_model'+ APPLICATION_DATA['modelContainers'].length, 'Table':'MiniBatchKMeans_modelTable'+ APPLICATION_DATA['modelContainers'].length, 'ensamble':0 } );
 		drawLeftPanelContainer( container7 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
 		APPLICATION_DATA['modelContainers'].push(container7);
+		APPLICATION_DATA_copy['modelContainers'].push(container7);
 	}
 
 	if(comboboxValue == 8){
 		var container8 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'kmedoids_model'+ APPLICATION_DATA['modelContainers'].length, 'Table':'kmedoids_modelTable'+ APPLICATION_DATA['modelContainers'].length, 'ensamble':0 } );
 		drawLeftPanelContainer( container8 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
 		APPLICATION_DATA['modelContainers'].push(container8);
+		APPLICATION_DATA_copy['modelContainers'].push(container8);
+	}
+
+	if(comboboxValue == 9){
+		var container9 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'spectral_model'+ APPLICATION_DATA['modelContainers'].length, 'Table':'spectral_modelTable'+ APPLICATION_DATA['modelContainers'].length, 'ensamble':0 } );
+		drawLeftPanelContainer( container9 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
+		APPLICATION_DATA['modelContainers'].push(container9);
+		APPLICATION_DATA_copy['modelContainers'].push(container9);
+	}
+
+	if(comboboxValue == 10){
+		var container10 = createModel( { 'divParentId' : "leftPanelDiv", 'modelType' : 'gmm_model'+ APPLICATION_DATA['modelContainers'].length, 'Table':'gmm_modelTable'+ APPLICATION_DATA['modelContainers'].length, 'ensamble':0 } );
+		drawLeftPanelContainer( container10 ,  { 'dataScatter' : [] , 'dataMatrix':[] , 'dataOption':'#slider-container', 'metric1': 0, 'metric2': 0,'metric3': 0} );
+		APPLICATION_DATA['modelContainers'].push(container10);
+		APPLICATION_DATA_copy['modelContainers'].push(container10);
 	}
 
 
 
 
 	var numberOfSides = APPLICATION_DATA['modelContainers'].length,
-    size = 70,
+    size = 60,
 
     Xcenter = (document.getElementById('tcanvas').clientWidth)/4;
    	Ycenter = (document.getElementById('tcanvas').clientHeight)/2;
@@ -112,10 +130,50 @@ function onAddModel( )
 
 	for (var i = 1; i <= numberOfSides;i += 1) {
 	    cxt.lineTo (Xcenter + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides));
-	    cxt.font = "12px Georgia";
+	    cxt.font = "10px Georgia";
 		cxt.fillStyle = 'blue'
-	    cxt.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
-	    	,Xcenter + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	   if(i==1){
+	   		 cxt.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter +3+ size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	   }
+	   if(i==2){
+	   		if(numberOfSides==4){
+	   			cxt.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter -15+ size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter-5 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	   		}
+	   		else{
+	   			cxt.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter -29+ size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	   		}
+
+	   		 
+	   }
+	   if(i==3){
+	   		 cxt.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter-17 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter-5 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	   }
+	   if(i==4){
+	   		if(numberOfSides==4){
+	   			cxt.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter +3+ size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	   		}
+	   		else{
+	   			cxt.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter -40+ size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	   		}
+
+	   		 
+	   }
+	   if (i==5) {
+	   		 cxt.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter+2 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	   }
+	   if(i==6){
+	   		 cxt.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter +1+ size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter -5+ size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	   }
+	    //cxt.fillText("M"+i,Xcenter + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides));
+
 	}
 	cxt.strokeStyle = "#000000";
 	cxt.lineWidth = 1;
@@ -146,10 +204,45 @@ function onAddModel( )
 
 	for (var i = 1; i <= numberOfSides;i += 1) {
 	    cxt2.lineTo (Xcenter + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides));
-	    cxt2.font = "12px Georgia";
+	    cxt2.font = "10px Georgia";
 		cxt2.fillStyle = 'blue'
-	    cxt2.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
-	    	,Xcenter2 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	    if(i==1){
+	    	cxt2.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter2+3 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	    }
+	    if(i==2){
+	    	if(numberOfSides==4){
+	    		cxt2.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter2-15 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2-5 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	    	}else{
+	    		cxt2.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter2-29 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	    	}
+	    	
+	    }
+	    if(i==3){
+	    	cxt2.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter2-17 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2-5 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	    }
+	    if(i==4){
+	    	if(numberOfSides==4){
+	    		cxt2.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter2+3 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	    	}else{
+	    		cxt2.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter2-40 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	    	}
+	    	
+	    }
+	    if(i==5){
+	    	cxt2.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter2+2 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	    }
+	    if(i==6){
+	    	cxt2.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter2+1 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2-5 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	    }
+		//cxt2.fillText("M"+i,Xcenter2 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2 + size * Math.sin(i * 2 * Math.PI / numberOfSides));
 	}
 	cxt2.strokeStyle = "#000000";
 	cxt2.lineWidth = 1;
@@ -179,10 +272,47 @@ function onAddModel( )
 
 	for (var i = 1; i <= numberOfSides;i += 1) {
 	    cxt3.lineTo (Xcenter3 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter3 + size * Math.sin(i * 2 * Math.PI / numberOfSides));
-	    cxt3.font = "12px Georgia";
+	    cxt3.font = "10px Georgia";
 		cxt3.fillStyle = 'blue'
-	    cxt3.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
-	    	,Xcenter3 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	    if(i==1){
+	    	cxt3.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter3+3 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	    }
+	    if(i==2){
+	    	if(numberOfSides==4){
+	    		cxt3.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter3-15 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2-5 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+			}
+			else{
+				cxt3.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter3-29 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+			}
+	    	
+	    }
+	    if(i==3){
+	    	cxt3.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter3-17 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2-5 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	    }
+	    if(i==4){
+	    	if(numberOfSides==4){
+	    		cxt3.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter3+3 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+			}
+			else{
+				cxt3.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter3-40 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+			}
+	    	
+	    }
+	    if(i==5){
+	    	cxt3.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter3+2 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	    }
+	    if(i==6){
+	    	cxt3.fillText(APPLICATION_DATA['modelContainers'][i-1].name.substring(0, APPLICATION_DATA['modelContainers'][i-1].name.length-7)
+	    	,Xcenter3+1 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter2-5 + size * Math.sin(i * 2 * Math.PI / numberOfSides)   ) 
+	    }
+		//cxt3.fillText("M"+i,Xcenter3 + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter3 + size * Math.sin(i * 2 * Math.PI / numberOfSides));
 	}
 	cxt3.strokeStyle = "#000000";
 	cxt3.lineWidth = 1;
@@ -197,7 +327,6 @@ function onAddModel( )
 
 	document.getElementById('selectBox').value = 0;
 }
-
 
 
 
@@ -301,4 +430,33 @@ function arrayMax(arr) {
   return arr.reduce(function (p, v) {
   return ( p > v ? p : v );
   });
+}
+
+function toggleIcon(e) {
+        $(e.target)
+            .prev('.panel-heading')
+            .find(".more-less")
+            .toggleClass('glyphicon-plus glyphicon-minus');
+    }
+    $('.panel-group').on('hidden.bs.collapse', toggleIcon);
+    $('.panel-group').on('shown.bs.collapse', toggleIcon);
+
+
+
+
+function intersection_destructive(a, b)
+{
+  var result = [];
+  while( a.length > 0 && b.length > 0 )
+  {  
+     if      (a[0] < b[0] ){ a.shift(); }
+     else if (a[0] > b[0] ){ b.shift(); }
+     else /* they're equal */
+     {
+       result.push(a.shift());
+       b.shift();
+     }
+  }
+
+  return result;
 }

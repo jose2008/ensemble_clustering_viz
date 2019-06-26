@@ -1,6 +1,6 @@
 
 var APPLICATION_DATA = {};
-
+var APPLICATION_DATA_copy = {};
 
 function createModel( params )
 {
@@ -64,14 +64,6 @@ function draw()
 
 function begin()
 {
-
-
-	
-
-
-
-
-
 	// initialize everything here
 	// procedural
 	APPLICATION_DATA['leftPanelDiv'] 	= document.getElementById( 'leftPanelDiv' );
@@ -80,15 +72,20 @@ function begin()
 	APPLICATION_DATA['modelContainers'] = [];
 	APPLICATION_DATA['metrics'] = [];
 	APPLICATION_DATA['points'] = [];
-	APPLICATION_DATA['metric'] ;
+	APPLICATION_DATA['metric_historial'] ;
 	APPLICATION_DATA['vertex'] = [];
-	
-
-
-
-
-
-
-	// oop
+	APPLICATION_DATA['Comparation'] = {"methods":[], "valor":[], "color":[], "metric":[]};
+	APPLICATION_DATA_copy['modelContainers'] = [];
+	APPLICATION_DATA_copy['metrics'] = [];
+	APPLICATION_DATA_copy['points'] = [];
 	//APPLICATION_MODEL_PANEL = new ApplicationModelsPanel();
+
+	APPLICATION_DATA['historial'] = [];
+
+	APPLICATION_DATA['positions_historial'] = [];
+	APPLICATION_DATA['label_historial'] = [];
+	APPLICATION_DATA['weight_historial'] = [];
+
+
+
 };

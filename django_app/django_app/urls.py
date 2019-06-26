@@ -25,6 +25,8 @@ urlpatterns = [
 	#path('', views.index, name='index'),
 	#path('models/model_clustering', models.model_clustering, name='model_clustering'),
 	path('views/kmean_model', views.kmean_model, name='kmean_model'),
+    path('views/spectral_model', views.spectral_model, name='spectral_model'),
+    path('views/gmm_model', views.gmm_model, name='gmm_model'),
     path('views/kmedoids_model', views.kmedoids_model, name='kmedoids_model'),
     path('views/kmean_model_clasic', views.kmean_model_clasic, name='kmean_model_clasic'),
 	path('views/birch_model', views.birch_model, name='birch_model'),
@@ -37,6 +39,9 @@ urlpatterns = [
     path('views/ensamble_Agglomerative_initial', views.ensamble_Agglomerative_initial, name='ensamble_Agglomerative_initial'),
     path('views/majority_vote_initial', views.majority_vote_initial, name='majority_vote_initial'),
     path('views/majority_vote', views.majority_vote, name='majority_vote'),
+    path('views/majority_vote_test', views.majority_vote_test, name='majority_vote_test'),
+    path('views/ensamble_model_test', views.ensamble_model_test, name='ensamble_model_test'),
+    path('views/dimensionalReduction', views.dimensionalReduction, name='dimensionalReduction'),
 ]
 
 #path('polls/', include('polls.urls')),
